@@ -2,10 +2,12 @@ package com.nota.model;
 
 import java.sql.Date;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Cliente {
@@ -17,6 +19,9 @@ public class Cliente {
     private String cpf;
     private String sexo;
     private Date dataNascimento;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Endereco endereco;
 
     public Long getId() {
         return id;
@@ -56,6 +61,14 @@ public class Cliente {
 
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
 }
