@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nota.model.Cliente;
+import com.nota.model.FotoPerfil;
 import com.nota.repository.ClienteRepository;
 
 @RestController
@@ -29,6 +30,12 @@ public class ClienteController {
 
     @PostMapping("/salvar")
     public ResponseEntity<Cliente> salvarCliente(@RequestBody Cliente cliente) {
+        if (cliente.getFotosPerfil() != null) {
+            for (FotoPerfil fotoPerfil : cliente.getFotosPerfil()) {
+                fotoPerfil.setCliente(cliente);
+            }
+        }
+
         Cliente novoCliente = clienteRepository.save(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoCliente);
     }

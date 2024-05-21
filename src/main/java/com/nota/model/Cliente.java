@@ -1,6 +1,7 @@
 package com.nota.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -8,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Cliente {
@@ -22,6 +24,9 @@ public class Cliente {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<FotoPerfil> fotosPerfil;
 
     public Long getId() {
         return id;
@@ -69,6 +74,14 @@ public class Cliente {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public List<FotoPerfil> getFotosPerfil() {
+        return fotosPerfil;
+    }
+
+    public void setFotosPerfil(List<FotoPerfil> fotosPerfil) {
+        this.fotosPerfil = fotosPerfil;
     }
 
 }
