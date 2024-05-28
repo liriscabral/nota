@@ -22,7 +22,7 @@ import com.nota.repository.ClienteRepository;
 
 @RestController
 @RequestMapping("/clientes")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ClienteController {
 
     @Autowired

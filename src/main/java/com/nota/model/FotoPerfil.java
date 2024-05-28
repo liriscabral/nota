@@ -4,11 +4,13 @@ import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -19,6 +21,9 @@ public class FotoPerfil {
     private Long id;
     private String nomeArquivo;
     private String tipoConteudo;
+    @Lob
+    @Column(name = "foto", columnDefinition = "LONGBLOB")
+    private byte[] foto;
     private Date dataUpload;
 
     @ManyToOne
@@ -48,6 +53,14 @@ public class FotoPerfil {
 
     public void setTipoConteudo(String tipoConteudo) {
         this.tipoConteudo = tipoConteudo;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
     }
 
     public Date getDataUpload() {
